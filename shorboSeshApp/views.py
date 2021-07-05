@@ -1,11 +1,11 @@
 from django.shortcuts import render
-from bs4 import BeautifulSoup as soup
-import requests
-# Create your views here.
+from bs4 import BeautifulSoup
+from requests_html import HTMLSession
 def sorboSesh(requests):
+    session = HTMLSession()
     site = 'https://www.prothomalo.com/collection/latest'
-    html = requests.get(site)
-    soup = soup(html.text, "html.parser")
+    html = session.get(site)
+    soup = BeautifulSoup(html.content, "html.parser")
     connection = soup.find_all("div", {"class": "customStoryCard9-m__story-data__2qgWb"}, "href")
     for i in connection:
         print("█▒▒▒ সর্বশেষ/Just In ▒▒▒█")
