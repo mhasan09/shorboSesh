@@ -10,16 +10,29 @@ def sorboSesh(requests):
     html = session.get(site)
     soup = BeautifulSoup(html.content, "html.parser")
     connection = soup.find_all("div", {"class": "customStoryCard9-m__story-data__2qgWb"}, "href")
+
+    # for i in connection:
+    #     temp_dict = dict()
+    #     temp_dict['NEWS_TITLE'] = i.h2.text
+    #     try:
+    #         temp_dict['NEWS_SUBTITLE'] = i.span.text
+    #     except Exception as e:
+    #         pass
+    #     temp_dict['NEWS_LINK'] = i.find('a')['href']
+    #     temp_dict['NEWS_SOURCE'] = 'Promothom Alo'
+    #     temp_dict['POST_CREATED_AT'] = i.time.text
+
     for i in connection:
-        print("█▒▒▒ সর্বশেষ/Just In ▒▒▒█")
-        print(i.h2.text)
+        obj = NEWS()
+        obj.NEWS_TITLE = i.h2.text
         try:
-            print(i.span.text)
+            obj.NEWS_SUBTITLE = i.span.text
         except Exception as e:
             pass
-        print("বিস্তারিত :", i.find('a')['href'])
-        print(i.time.text)
-        print("-" * 60)
+        obj.NEWS_LINK = i.find('a')['href']
+        obj.NEWS_SOURCE = 'Prothom Alo'
+        obj.POST_CREATED_AT = i.time.text
+        obj.save()
 
 class news_api_view(generics.ListCreateAPIView):
     queryset = NEWS.objects.all()
