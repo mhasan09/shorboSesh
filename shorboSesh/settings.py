@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'shorboSeshApp',
     'rest_framework'
 ]
-
+STATIC_URL = '/static/'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
