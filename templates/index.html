@@ -1,8 +1,14 @@
+{% load static %}
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
     <style>
         h1 {
             font-family: 'Hind Siliguri', sans-serif;
@@ -14,21 +20,30 @@
             font-family: 'Hind Siliguri', sans-serif;
         }
 
-        .row {
-            display: flex;
-            align-content: center;
+        .row{
+            margin-top: 5%;
         }
+        object{
+            width: 100%;
+        }
+
+
     </style>
 </head>
+<body>
+
 <div class="container">
-    <div class="row">
-        {% for i in queryset %}
-            <h1>{{ i.NEWS_TITLE }}</h1>
-            <p>{{ i.NEWS_SUBTITLE }}</p>
-            <p>{{ i.POST_CREATED_AT }}</p>
-            <a href="{{ i.NEWS_LINK }}">বিস্তারিত </a>
-            <u></u>
-        {% endfor %}
+    {% for i in queryset %}
+        <div class="row">
+        <h1>{{ i.NEWS_TITLE }}</h1>
+        <p>{{ i.POST_CREATED_AT }}</p>
+        <p>{{ i.NEWS_SUBTITLE }}</p>
+        <a href="{{ i.NEWS_LINK }}">বিস্তারিত </a>
+        </div>
+    {% endfor %}
     </div>
-</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
 </html>
